@@ -13,9 +13,9 @@
 
     <TextView
         android:text="Sample Text"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="79dp"
-        android:id="@+id/textView"
+        android:id="@+id/sampleText"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"
@@ -27,6 +27,65 @@
         tools:textSize="25dp"
         tools:textAlignment="center" />
 
+    <TextView
+        android:text="Font Styles"
+        android:layout_width="336dp"
+        android:id="@+id/label1"
+        tools:textAlignment="center"
+        tools:textSize="19dp"
+        tools:textColor="@color/Black"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/sampleText"
+        android:layout_height="30dp" />
+
+    <Spinner
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:id="@+id/fontStyles"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/label1"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp" />
+
+    <TextView
+        android:text="Font Family"
+        tools:textAlignment="center"
+        tools:textSize="19dp"
+        tools:textColor="@color/Black"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/label2"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/fontStyles"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp" />
+
+    <Spinner
+        android:layout_width="336dp"
+        android:layout_height="48dp"
+        android:id="@+id/fontFamily"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/label2"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp" />
 
 
 </android.support.constraint.ConstraintLayout>

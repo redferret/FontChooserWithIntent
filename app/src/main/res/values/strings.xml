@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">FontChooser</string>
+
+    <string-array name="fontStyles">
+        <item>Bold</item>
+        <item>Bold Italic</item>
+        <item>Italic</item>
+        <item>Normal</item>
+    </string-array>
+    <string-array name="fontFamily">
+        <item>Monospaced</item>
+        <item>Serif</item>
+        <item>Sans-Serif</item>
+    </string-array>
 </resources>
