@@ -1,8 +1,10 @@
 package apackage.richard.com.fontchooser;
 
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 
 public class FontChooserActivity extends AppCompatActivity {
@@ -12,7 +14,11 @@ public class FontChooserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_font_chooser);
         setupFontSpinners();
+
+        SeekBar mySeekbar = (SeekBar) findViewById(R.id.redSeek);
+
     }
+
 
     public void setupFontSpinners(){
         Spinner spinner = (Spinner) findViewById(R.id.fontStyles);
