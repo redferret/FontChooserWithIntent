@@ -15,7 +15,8 @@ import android.widget.Toast;
 
 public class FontChooserActivity extends AppCompatActivity  implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
-    private int red = 0, green = 0, blue = 0, alpha = 255, style = Typeface.NORMAL;
+    private TextColor textColor;
+    private int style = Typeface.NORMAL;
     private Typeface typeface = Typeface.DEFAULT;
     private TextView sampleText;
     @Override
@@ -31,8 +32,11 @@ public class FontChooserActivity extends AppCompatActivity  implements View.OnCl
         ((SeekBar) findViewById(R.id.alphaSeek)).setOnSeekBarChangeListener(sbl);
         ((SeekBar) findViewById(R.id.textSizeSeek)).setOnSeekBarChangeListener(sbl);
 
+        textColor = new TextColor();
+
         sampleText = (TextView) findViewById(R.id.sampleText);
-        setTextColor(red, green, blue, alpha, sampleText);
+
+        sampleText.setTextColor(textColor.getColor());
 
         Spinner spinner = (Spinner) findViewById(R.id.fontFamily);
         spinner.setOnItemSelectedListener(this);
@@ -117,52 +121,28 @@ public class FontChooserActivity extends AppCompatActivity  implements View.OnCl
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-            int red, green, blue, alpha;
-
             switch (seekBar.getId()) {
                 case R.id.redSeek:
-                    FontChooserActivity.this.red = red = progress;
-                    green = FontChooserActivity.this.green;
-                    blue = FontChooserActivity.this.blue;
-                    alpha = FontChooserActivity.this.alpha;
-                    setTextColor(red, green, blue, alpha, sampleText);
+                    textColor.setRed(progress);
                     break;
                 case R.id.greenSeek:
-                    red = FontChooserActivity.this.red;
-                    FontChooserActivity.this.green = green = progress;
-                    blue = FontChooserActivity.this.blue;
-                    alpha = FontChooserActivity.this.alpha;
-                    setTextColor(red, green, blue, alpha, sampleText);
+                    textColor.setGreen(progress);
                     break;
                 case R.id.blueSeek:
-                    red = FontChooserActivity.this.red;
-                    green = FontChooserActivity.this.green;
-                    FontChooserActivity.this.blue = blue = progress;
-                    alpha = FontChooserActivity.this.alpha;
-                    setTextColor(red, green, blue, alpha, sampleText);
+                    textColor.setBlue(progress);
                     break;
                 case R.id.alphaSeek:
-                    red = FontChooserActivity.this.red;
-                    green = FontChooserActivity.this.green;
-                    blue = FontChooserActivity.this.blue;
-                    FontChooserActivity.this.alpha = alpha = progress;
-                    setTextColor(red, green, blue, alpha, sampleText);
+                    textColor.setAlpha(progress);
                     break;
                 case R.id.textSizeSeek:
                     sampleText.setTextSize(TypedValue.COMPLEX_UNIT_SP, progress + 10);
                     break;
             }
+
+            sampleText.setTextColor(textColor.getColor());
         }
 
 
     }
 
-    
-    private void setTextColor(int red, int green, int blue, int alpha, TextView textView) {
-        int color = alpha;
-        color <<= 8;  color += red;
-        color <<= 8;  color += green;
-        color <<= 8;  color += blue;
-        textView.setTextColor(color);
-    }
 }
