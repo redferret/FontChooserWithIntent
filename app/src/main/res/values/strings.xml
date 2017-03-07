@@ -1,15 +1,24 @@
 <resources>
     <string name="app_name">FontChooser</string>
 
+    <string name="Bold">Bold</string>
+    <string name="Bold_Italic">Bold Italic</string>
+    <string name="Italic">Italic</string>
+    <string name="Normal">Normal</string>
+
+    <string name="Monospaced">Monospaced</string>
+    <string name="Serif">Serif</string>
+    <string name="Sans_Serif">Sans Serif</string>
+
     <string-array name="fontStyles">
-        <item>Bold</item>
-        <item>Bold Italic</item>
-        <item>Italic</item>
-        <item>Normal</item>
+        <item>@string/Bold</item>
+        <item>@string/Bold_Italic</item>
+        <item>@string/Italic</item>
+        <item>@string/Normal</item>
     </string-array>
     <string-array name="fontFamily">
-        <item>Monospaced</item>
-        <item>Serif</item>
-        <item>Sans-Serif</item>
+        <item>@string/Monospaced</item>
+        <item>@string/Serif</item>
+        <item>@string/Sans_Serif</item>
     </string-array>
 </resources>

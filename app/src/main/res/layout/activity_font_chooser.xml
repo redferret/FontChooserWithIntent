@@ -64,28 +64,36 @@
             android:layout_height="35dp"
             android:id="@+id/redSeek"
             android:progressDrawable="@drawable/redprogress_scrubber_progress_horizontal_holo_light"
-            android:thumb="@drawable/redprogress_scrubber_control_normal_holo"/>
+            android:thumb="@drawable/redprogress_scrubber_control_normal_holo"
+            android:max="255"
+            android:progress="0" />
 
         <SeekBar
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:id="@+id/greenSeek"
             android:progressDrawable="@drawable/greenprogress_scrubber_progress_horizontal_holo_light"
-            android:thumb="@drawable/greenprogress_scrubber_control_normal_holo"/>
+            android:thumb="@drawable/greenprogress_scrubber_control_normal_holo"
+            android:max="255"
+            android:progress="0" />
 
         <SeekBar
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:id="@+id/blueSeek"
             android:progressDrawable="@drawable/blueprogress_scrubber_progress_horizontal_holo_light"
-            android:thumb="@drawable/blueprogress_scrubber_control_normal_holo"/>
+            android:thumb="@drawable/blueprogress_scrubber_control_normal_holo"
+            android:max="255"
+            android:progress="0" />
 
         <SeekBar
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:id="@+id/alphaSeek"
             android:progressDrawable="@drawable/alphaprogress_scrubber_progress_horizontal_holo_light"
-            android:thumb="@drawable/alphaprogress_scrubber_control_normal_holo"/>
+            android:thumb="@drawable/alphaprogress_scrubber_control_normal_holo"
+            android:max="255"
+            android:progress="255" />
 
         <TextView
             android:text="Text Size"
@@ -100,7 +108,15 @@
             android:layout_height="35dp"
             android:id="@+id/textSizeSeek"
             android:progressDrawable="@drawable/alphaprogress_scrubber_progress_horizontal_holo_light"
-            android:thumb="@drawable/alphaprogress_scrubber_control_disabled_holo"/>
+            android:thumb="@drawable/alphaprogress_scrubber_control_disabled_holo"
+            android:max="40"
+            android:progress="10" />
+
+        <Button
+            android:text="Set"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_font" />
 
     </LinearLayout>
 
