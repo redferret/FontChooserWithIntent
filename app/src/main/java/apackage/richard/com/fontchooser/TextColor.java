@@ -1,10 +1,12 @@
 package apackage.richard.com.fontchooser;
 
+import java.io.Serializable;
+
 /**
  * Created by Richard on 3/6/2017.
  */
 
-public class TextColor {
+public class TextColor implements Serializable {
 
     private int red, green, blue, alpha;
 

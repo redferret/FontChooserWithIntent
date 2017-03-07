@@ -1,5 +1,6 @@
 package apackage.richard.com.fontchooser;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +14,29 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FontChooserActivity extends AppCompatActivity  implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class FontChooserActivity extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
 
-    private TextColor textColor;
-    private int style = Typeface.NORMAL;
-    private Typeface typeface = Typeface.DEFAULT;
+    private FontItem fontItem;
     private TextView sampleText;
+    private Intent intent;
+
+    public void sendFontWithIntent(View view) {
+
+        int typeId =
+                fontItem.getType() == Typeface.DEFAULT ? 0 :
+                fontItem.getType() == Typeface.MONOSPACE ? 1 :
+                fontItem.getType() == Typeface.SERIF ? 2 :
+                fontItem.getType() == Typeface.SANS_SERIF ? 3 : -1;
+
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra("FontStyle", fontItem.getStyle());
+        intent.putExtra("FontTypeface", typeId);
+        intent.putExtra("FontColor", fontItem.getTextColor().getColor());
+        intent.putExtra("FontSize", fontItem.getTextSize());
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,17 +50,19 @@ public class FontChooserActivity extends AppCompatActivity  implements View.OnCl
         ((SeekBar) findViewById(R.id.alphaSeek)).setOnSeekBarChangeListener(sbl);
         ((SeekBar) findViewById(R.id.textSizeSeek)).setOnSeekBarChangeListener(sbl);
 
-        textColor = new TextColor();
+        fontItem = new FontItem();
 
         sampleText = (TextView) findViewById(R.id.sampleText);
 
-        sampleText.setTextColor(textColor.getColor());
+        sampleText.setTextColor(fontItem.getTextColor().getColor());
 
         Spinner spinner = (Spinner) findViewById(R.id.fontFamily);
         spinner.setOnItemSelectedListener(this);
 
         spinner = (Spinner) findViewById(R.id.fontStyles);
         spinner.setOnItemSelectedListener(this);
+
+        intent = getIntent();
     }
 
 
@@ -61,46 +81,33 @@ public class FontChooserActivity extends AppCompatActivity  implements View.OnCl
     }
 
     @Override
-    public void onClick(View v) {
-        if (v instanceof Spinner) {
-            Spinner selection = (Spinner) v;
-            int pos = selection.getSelectedItemPosition();
-            Toast.makeText(this.getApplicationContext(), "Pos is " + pos, Toast.LENGTH_LONG);
-            switch (v.getId()) {
-                case R.id.fontFamily:
-
-                    break;
-            }
-        }
-    }
-
-    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String item = parent.getSelectedItem().toString();
 
         switch(item){
             case "Bold":
-                sampleText.setTypeface(typeface, style = Typeface.BOLD);
+                fontItem.setStyle(Typeface.BOLD);
                 break;
             case "Bold Italic":
-                sampleText.setTypeface(typeface, style = Typeface.BOLD_ITALIC);
+                fontItem.setStyle(Typeface.BOLD_ITALIC);
                 break;
             case "Italic":
-                sampleText.setTypeface(typeface, style = Typeface.ITALIC);
+                fontItem.setStyle(Typeface.ITALIC);
                 break;
             case "Normal":
-                sampleText.setTypeface(typeface, style = Typeface.NORMAL);
+                fontItem.setStyle(Typeface.NORMAL);
                 break;
             case "Monospaced":
-                sampleText.setTypeface(typeface = Typeface.MONOSPACE, style);
+                fontItem.setType(Typeface.MONOSPACE);
                 break;
             case "Serif":
-                sampleText.setTypeface(typeface = Typeface.SERIF, style);
+                fontItem.setType(Typeface.SERIF);
                 break;
             case "Sans Serif":
-                sampleText.setTypeface(typeface = Typeface.SANS_SERIF, style);
+                fontItem.setType(Typeface.SANS_SERIF);
                 break;
         }
+        sampleText.setTypeface(fontItem.getType(), fontItem.getStyle());
     }
 
     @Override
@@ -123,23 +130,24 @@ public class FontChooserActivity extends AppCompatActivity  implements View.OnCl
 
             switch (seekBar.getId()) {
                 case R.id.redSeek:
-                    textColor.setRed(progress);
+                    fontItem.getTextColor().setRed(progress);
                     break;
                 case R.id.greenSeek:
-                    textColor.setGreen(progress);
+                    fontItem.getTextColor().setGreen(progress);
                     break;
                 case R.id.blueSeek:
-                    textColor.setBlue(progress);
+                    fontItem.getTextColor().setBlue(progress);
                     break;
                 case R.id.alphaSeek:
-                    textColor.setAlpha(progress);
+                    fontItem.getTextColor().setAlpha(progress);
                     break;
                 case R.id.textSizeSeek:
-                    sampleText.setTextSize(TypedValue.COMPLEX_UNIT_SP, progress + 10);
+                    fontItem.setTextSize(progress + 10);
+                    sampleText.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontItem.getTextSize());
                     break;
             }
 
-            sampleText.setTextColor(textColor.getColor());
+            sampleText.setTextColor(fontItem.getTextColor().getColor());
         }
 
 
