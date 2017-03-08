@@ -149,8 +149,5 @@ public class FontChooserActivity extends AppCompatActivity  implements AdapterVi
 
             sampleText.setTextColor(fontItem.getTextColor().getColor());
         }
-
-
     }
-
 }

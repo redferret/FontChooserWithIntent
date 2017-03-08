@@ -12,7 +12,7 @@ public class FontItem {
 
     private TextColor color = new TextColor();
     private int style = Typeface.NORMAL;
-    private int textSize = 10;
+    private int textSize = 20;
     private Typeface type = Typeface.DEFAULT;
 
     public Typeface getType() {
